@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq7tk81vki26x"]
+
+[ext_resource type="Shader" path="res://dither.gdshader" id="1_6n2h1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rmlo1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6ge5"]
+render_priority = 0
+shader = ExtResource("1_6n2h1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1773"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_btswq"]
+
+[sub_resource type="Environment" id="Environment_dntmf"]
+background_mode = 1
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_rmlo1")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.83968, 0, 0, 0, 6.83968, 0, 0, 0, 6.83968, -8.13931, 0, 0)
+mesh = SubResource("SphereMesh_rmlo1")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.669286, 0, 0, 0, 0.669286, 0, 0, 0, 0.669286, -0.773391, 0.506479, 0)
+mesh = SubResource("SphereMesh_rmlo1")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.669286, 0, 0, 0, 0.669286, 0, 0, 0, 0.669286, 1.05992, -0.0219995, 0)
+mesh = SubResource("BoxMesh_p1773")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.277304, 0.145427, 0.354994, -0.219846, 0.419208, 0, -0.314385, -0.164874, 0.313124, -0.77891, -0.0219995, 0.871273)
+mesh = SubResource("BoxMesh_p1773")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(36.2316, 0, 0, 0, 36.2316, 0, 0, 0, 36.2316, 0, -0.509498, 0)
+mesh = SubResource("PlaneMesh_btswq")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dntmf")
