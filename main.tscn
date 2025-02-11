@@ -1,13 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://cq7tk81vki26x"]
+[gd_scene load_steps=16 format=3 uid="uid://cq7tk81vki26x"]
 
 [ext_resource type="Shader" path="res://dither.gdshader" id="1_6n2h1"]
+[ext_resource type="Shader" path="res://post_dither.gdshader" id="2_sa8wr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rmlo1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6ge5"]
+render_priority = 0
+shader = ExtResource("1_6n2h1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1773"]
 
 [sub_resource type="Animation" id="Animation_y7t00"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../MeshInstance3D5:rotation")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../MeshInstance3D5:position")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,7 +50,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../MeshInstance3D5:rotation")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -53,7 +62,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../MeshInstance3D5:position")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -68,57 +77,101 @@ _data = {
 "new_animation": SubResource("Animation_ln4rs")
 }
 
-[sub_resource type="SphereMesh" id="SphereMesh_rmlo1"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_btswq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6ge5"]
+[sub_resource type="TextMesh" id="TextMesh_q2one"]
+text = "rawr x3"
+font_size = 127
+depth = 0.42
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8kly"]
 render_priority = 0
 shader = ExtResource("1_6n2h1")
 
-[sub_resource type="BoxMesh" id="BoxMesh_p1773"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_btswq"]
-
 [sub_resource type="Environment" id="Environment_dntmf"]
 background_mode = 1
-background_color = Color(0.333333, 0.184314, 0.392157, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_l1va5"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3o085"]
+render_priority = 0
+shader = ExtResource("2_sa8wr")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../WorldEnvironment")
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene"]
+mesh = SubResource("SphereMesh_rmlo1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(6.83968, 0, 0, 0, 6.83968, 0, 0, 0, 6.83968, -8.13931, 0, 0)
+mesh = SubResource("SphereMesh_rmlo1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(0.669286, 0, 0, 0, 0.669286, 0, 0, 0, 0.669286, -0.773391, 0.506479, 0)
+mesh = SubResource("SphereMesh_rmlo1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(0.669286, 0, 0, 0, 0.669286, 0, 0, 0, 0.669286, 1.05992, -0.0219995, 0)
+mesh = SubResource("BoxMesh_p1773")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(0.473358, 0, 0, 0, 0.473358, 0, 0, 0, 0.473358, -0.667975, 0.528163, 3.10889)
+mesh = SubResource("BoxMesh_p1773")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scene/MeshInstance3D5"]
 libraries = {
 "": SubResource("AnimationLibrary_4fgll"),
 "wawa": SubResource("AnimationLibrary_h0o80")
 }
+autoplay = "wawa/new_animation"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_rmlo1")
-surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(6.83968, 0, 0, 0, 6.83968, 0, 0, 0, 6.83968, -8.13931, 0, 0)
-mesh = SubResource("SphereMesh_rmlo1")
-surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.669286, 0, 0, 0, 0.669286, 0, 0, 0, 0.669286, -0.773391, 0.506479, 0)
-mesh = SubResource("SphereMesh_rmlo1")
-surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.669286, 0, 0, 0, 0.669286, 0, 0, 0, 0.669286, 1.05992, -0.0219995, 0)
-mesh = SubResource("BoxMesh_p1773")
-surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.473358, 0, 0, 0, 0.473358, 0, 0, 0, 0.473358, -0.667975, 0.528163, 3.10889)
-mesh = SubResource("BoxMesh_p1773")
-surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Scene"]
 transform = Transform3D(36.2316, 0, 0, 0, 36.2316, 0, 0, 0, 36.2316, 0, -0.509498, 0)
 mesh = SubResource("PlaneMesh_btswq")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89556, 0.00784194, 3.98043)
+light_energy = 0.605
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.42023, 0)
+mesh = SubResource("TextMesh_q2one")
+surface_material_override/0 = SubResource("ShaderMaterial_y8kly")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene"]
+transform = Transform3D(-0.759998, -0.2486, 0.600501, 0.0362232, 0.906315, 0.421048, -0.648916, 0.341748, -0.679792, 5.19868, 3.64512, -5.88513)
+shadow_enabled = true
+
+[node name="Rendering" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Rendering"]
 environment = SubResource("Environment_dntmf")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Rendering"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_l1va5")
+skeleton = NodePath("../WorldEnvironment")
+surface_material_override/0 = SubResource("ShaderMaterial_3o085")
+
+[node name="Camera3D" type="Camera3D" parent="Rendering"]
+transform = Transform3D(0.513902, -0.253745, 0.819462, 0, 0.955252, 0.295792, -0.857849, -0.152008, 0.490906, 3.01921, 1.73771, 2.57633)
+fov = 90.0

@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+//render_mode unshaded;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -12,7 +12,7 @@ mat4 roundmat4(mat4 m) {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	mat4 partMat = VIEW_MATRIX * MODEL_MATRIX;
-	vec4 pos = inverse(partMat)*vec4(VERTEX, 1.0)*10.0;
+	vec4 pos = inverse(partMat)*vec4(VERTEX, 1.0);
 	mat4 world2clip = mat4(mat2(vec2(VIEWPORT_SIZE.x,0.0),vec2(0.0,VIEWPORT_SIZE.y))) * PROJECTION_MATRIX * partMat;
 	vec4 clip = world2clip * pos;
 	vec4 scr = clip / clip.w;
@@ -30,8 +30,9 @@ void fragment() {
 	vec4 shade = level_fr * cos(pos * exp2(level_r)/sc+level_r) + (1.0-level_fr)*cos(pos*exp2(level_r-1.0)/sc+(level_r-1.0));
 	//ALBEDO = vec3(sign(abs(shade.x*shade.y*shade.z)-0.1)*0.5+0.5);
 	float shadef = min(length(shade.xy),min(length(shade.yz), length(shade.xz)))/sqrt(2.0);
-	shadef = sign(shadef-0.5)*0.5+0.5;
-	ALBEDO = mix(vec3(0.47, 0.26, 0.56)*0.7, vec3(0.71, 0.0, 1.0), shadef);
+	//shadef = sign(shadef-0.5)*0.5+0.5;
+	//ALBEDO = mix(vec3(0.47, 0.26, 0.56)*0.7, vec3(0.71, 0.0, 1.0), shadef);
+	ALBEDO = vec3(shadef);
 	//float sc = 1.0;
 	//pos = roundmat4(world2clip*sc)/sc * pos;
 	//pos = pos / round(pos.w+1.0);
