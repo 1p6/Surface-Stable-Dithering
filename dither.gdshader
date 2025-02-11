@@ -23,13 +23,13 @@ void fragment() {
 	vec4 deriv_mag = sqrt(deriv_x*deriv_x + deriv_y*deriv_y);
 	//ALBEDO = vec3(fract(deriv_mag.y/100.0));
 	//ALBEDO = vec3(abs(clamp(deriv_mag.x/100.0, -1.0,1.0)));
-	float sc = 4.0;
+	float sc = 10.0;
 	vec4 level = log2(deriv_mag);
 	vec4 level_fr = fract(level);
 	vec4 level_r = floor(level);
-	vec4 shade = level_fr * cos(pos * exp2(level_r)/sc+level_r) + (1.0-level_fr)*cos(pos*exp2(level_r-1.0)/sc+(level_r-1.0));
+	vec4 shade = level_fr * fract(pos * exp2(level_r)/sc+level_r) + (1.0-level_fr)*fract(pos*exp2(level_r-1.0)/sc+(level_r-1.0)) - 0.5;
 	//ALBEDO = vec3(sign(abs(shade.x*shade.y*shade.z)-0.1)*0.5+0.5);
-	float shadef = min(length(shade.xy),min(length(shade.yz), length(shade.xz)))/sqrt(2.0);
+	float shadef = 2.0*min(length(shade.xy),min(length(shade.yz), length(shade.xz)))/sqrt(2.0);
 	//shadef = sign(shadef-0.5)*0.5+0.5;
 	//ALBEDO = mix(vec3(0.47, 0.26, 0.56)*0.7, vec3(0.71, 0.0, 1.0), shadef);
 	ALBEDO = vec3(shadef);
