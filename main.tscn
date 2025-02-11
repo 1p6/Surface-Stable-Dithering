@@ -1,6 +1,72 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq7tk81vki26x"]
+[gd_scene load_steps=11 format=3 uid="uid://cq7tk81vki26x"]
 
 [ext_resource type="Shader" path="res://dither.gdshader" id="1_6n2h1"]
+
+[sub_resource type="Animation" id="Animation_y7t00"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeshInstance3D5:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MeshInstance3D5:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.667975, 0.528163, 3.10889)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4fgll"]
+_data = {
+"RESET": SubResource("Animation_y7t00")
+}
+
+[sub_resource type="Animation" id="Animation_ln4rs"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MeshInstance3D5:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.629453, 0), Vector3(-0.477672, 1.52686, -0.386551), Vector3(-0.725797, -1.8295, 2.70019), Vector3(-0.218107, -0.834002, 0.984132)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MeshInstance3D5:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.910624, -0.0833683, 1.68104), Vector3(-0.667975, 0.528163, 3.10889), Vector3(0.156867, 0.246055, 2.22941), Vector3(-2.3943, 0.246055, 1.87555), Vector3(-1.30469, -0.0728636, 3.67936)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h0o80"]
+_data = {
+"new_animation": SubResource("Animation_ln4rs")
+}
 
 [sub_resource type="SphereMesh" id="SphereMesh_rmlo1"]
 
@@ -14,8 +80,16 @@ shader = ExtResource("1_6n2h1")
 
 [sub_resource type="Environment" id="Environment_dntmf"]
 background_mode = 1
+background_color = Color(0.333333, 0.184314, 0.392157, 1)
 
 [node name="Node3D" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../WorldEnvironment")
+libraries = {
+"": SubResource("AnimationLibrary_4fgll"),
+"wawa": SubResource("AnimationLibrary_h0o80")
+}
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_rmlo1")
@@ -37,7 +111,7 @@ mesh = SubResource("BoxMesh_p1773")
 surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.277304, 0.145427, 0.354994, -0.219846, 0.419208, 0, -0.314385, -0.164874, 0.313124, -0.77891, -0.0219995, 0.871273)
+transform = Transform3D(0.473358, 0, 0, 0, 0.473358, 0, 0, 0, 0.473358, -0.667975, 0.528163, 3.10889)
 mesh = SubResource("BoxMesh_p1773")
 surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
 
