@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cq7tk81vki26x"]
+[gd_scene load_steps=18 format=3 uid="uid://cq7tk81vki26x"]
 
 [ext_resource type="Shader" path="res://dither.gdshader" id="1_6n2h1"]
+[ext_resource type="Script" path="res://random_rotate.gd" id="2_b2ysw"]
 [ext_resource type="Shader" path="res://post_dither.gdshader" id="2_sa8wr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rmlo1"]
@@ -8,6 +9,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j6ge5"]
 render_priority = 0
 shader = ExtResource("1_6n2h1")
+
+[sub_resource type="TorusMesh" id="TorusMesh_nxdt8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_p1773"]
 
@@ -111,6 +114,15 @@ mesh = SubResource("SphereMesh_rmlo1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
 
+[node name="RandomRotator" type="Node3D" parent="Scene"]
+transform = Transform3D(1.50039, 0, 0, 0, 1.50112, 0, 0, 0, 1.50001, 3.31116, 0.682653, 2.20148)
+script = ExtResource("2_b2ysw")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Scene/RandomRotator"]
+mesh = SubResource("TorusMesh_nxdt8")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
+
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Scene"]
 transform = Transform3D(6.83968, 0, 0, 0, 6.83968, 0, 0, 0, 6.83968, -8.13931, 0, 0)
 mesh = SubResource("SphereMesh_rmlo1")
@@ -173,5 +185,5 @@ skeleton = NodePath("../WorldEnvironment")
 surface_material_override/0 = SubResource("ShaderMaterial_3o085")
 
 [node name="Camera3D" type="Camera3D" parent="Rendering"]
-transform = Transform3D(0.513902, -0.253745, 0.819462, 0, 0.955252, 0.295792, -0.857849, -0.152008, 0.490906, 3.01921, 1.73771, 2.57633)
+transform = Transform3D(0.513902, -0.253745, 0.819462, 0, 0.955252, 0.295792, -0.857849, -0.152008, 0.490906, 5.19215, 2.20983, 4.35409)
 fov = 90.0
