@@ -167,9 +167,11 @@ mesh = SubResource("PlaneMesh_btswq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Scene"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.89556, 0.00784194, 3.98043)
-light_energy = 0.605
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(5.91688, 0, 0, 0, 5.91688, 0, 0, 0, 5.91688, -11.0552, -0.480223, 2.03142)
+mesh = SubResource("PlaneMesh_btswq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j6ge5")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Scene"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.42023, 0)
@@ -179,6 +181,12 @@ surface_material_override/0 = SubResource("ShaderMaterial_y8kly")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene"]
 transform = Transform3D(-0.759998, -0.2486, 0.600501, 0.0362232, 0.906315, 0.421048, -0.648916, 0.341748, -0.679792, 5.19868, 3.64512, -5.88513)
 shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.33942, 0.167745, 4.30349)
+light_energy = 0.605
+shadow_enabled = true
+omni_range = 1.52031
 
 [node name="Rendering" type="Node3D" parent="."]
 
@@ -199,6 +207,7 @@ script = ExtResource("4_l6xh8")
 fov = 90.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.626252, 0, 0, 0, 0.626252, 0, 0, 0, 0.626252, 0, 0, 0)
 mesh = SubResource("SphereMesh_hrmvk")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_3t0ns")
